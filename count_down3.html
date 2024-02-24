@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Black Background with Randomly Moving Stars</title>
+    <style>
+        body {
+            background-color: #000;
+            overflow: hidden;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            color: #fff;
+            background-color: #000;
+        }
+
+        .stars {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: moveStars linear infinite;
+        }
+
+        @keyframes moveStars {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(calc(100vw - 2px), calc(100vh - 2px));
+            }
+        }
+
+
+        .countdown {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .deadline {
+            font-size: 36px;
+            color: #ccc;
+        }
+
+        .memoSignoff {
+            font-size: 24px;
+            color: #ccc;
+        }
+
+        .loginSignoff {
+            font-size: 24px;
+            color: #ccc;
+        }
+
+        .homePageSignoff {
+            font-size: 24px;
+            color: #ccc;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .countdown-timer span {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 10px;
+        }
+
+        .countdown-timer span .count {
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        .countdown-timer span .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .countdown-table {
+            display: table;
+            width: 100%;
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .countdown-row {
+            display: table-row;
+        }
+
+        .countdown-cell {
+            display: table-cell;
+            text-align: center;
+            padding: 10px;
+             max-width: 33%;    
+        }
+
+        .countdown-cell p {
+            color: #ccc; 
+            font-size: 20px; 
+        }
+
+        .countdown-cell .count {
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        .countdown-cell .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .countdown-timer-child {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .countdown-timer-child span {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 10px;
+        }
+
+        .countdown-timer-child span .count {
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+
+        .countdown-timer-child span .label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="countdown">
+        <h1>M-PA 1st Release Countdown</h1>
+        <p class="deadline"><span id="deadlineDate"></span></p>
+        <div class="countdown-timer">
+            <span>
+                <div class="count" id="days"></div>
+                <div class="label">Days</div>
+            </span>
+            <span>
+                <div class="count" id="hours"></div>
+                <div class="label">Hours</div>
+            </span>
+            <span>
+                <div class="count" id="minutes"></div>
+                <div class="label">Minutes</div>
+            </span>
+            <span>
+                <div class="count" id="seconds"></div>
+                <div class="label">Seconds</div>
+            </span>
+        </div>
+    <div>
+
+
+    <!-- table to show 6 count downs -->
+    <div class="countdown-table">
+        <div class="countdown-row">
+            <div class="countdown-cell">
+                <h1>Memo</h1>
+                <p><span id="memoSignOff"></span></p>
+                <div class="countdown-timer-child">
+                    <span>
+                        <div class="count" id="memoDays"></div>
+                        <div class="label">Days</div>
+                    </span>
+                    <span>
+                        <div class="count" id="memoHours"></div>
+                        <div class="label">Hours</div>
+                    </span>
+                    <span>
+                        <div class="count" id="memoMinutes"></div>
+                        <div class="label">Minutes</div>
+                    </span>
+                    <span>
+                        <div class="count" id="memoSeconds"></div>
+                        <div class="label">Seconds</div>
+                    </span>
+                </div>
+            </div>
+            <div class="countdown-cell">
+                <h1>Login</h1>
+                <p class="loginSignOff"><span id="loginSignOff"></span></p>
+                <div class="countdown-timer-child">
+                    <span>
+                        <div class="count" id="loginDays"></div>
+                        <div class="label">Days</div>
+                    </span>
+                    <span>
+                        <div class="count" id="loginHours"></div>
+                        <div class="label">Hours</div>
+                    </span>
+                    <span>
+                        <div class="count" id="loginMinutes"></div>
+                        <div class="label">Minutes</div>
+                    </span>
+                    <span>
+                        <div class="count" id="loginSeconds"></div>
+                        <div class="label">Seconds</div>
+                    </span>
+                </div>
+            </div>
+            <div class="countdown-cell">
+                <h1>HomePage</h1>
+                <p class="homePageSignOff"><span id="homePageSignOff"></span></p>
+                <div class="countdown-timer-child">
+                    <span>
+                        <div class="count" id="homePageDays"></div>
+                        <div class="label">Days</div>
+                    </span>
+                    <span>
+                        <div class="count" id="homePageHours"></div>
+                        <div class="label">Hours</div>
+                    </span>
+                    <span>
+                        <div class="count" id="homePageMinutes"></div>
+                        <div class="label">Minutes</div>
+                    </span>
+                    <span>
+                        <div class="count" id="homePageSeconds"></div>
+                        <div class="label">Seconds</div>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="countdown-row">
+            
+        </div>
+    </div>
+
+    
+    <script>
+        // Generate random stars
+        function generateStars() {
+            const starsContainer = document.querySelector('.stars');
+            const numberOfStars = 200;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.width = Math.floor(Math.random() * 5) + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.floor(Math.random() * 100) + 'vw';
+                star.style.top = Math.floor(Math.random() * 100) + 'vh';
+                star.style.animationDuration = Math.floor(Math.random() * 10 + 5) + 's';
+                star.style.animationDelay = Math.floor(Math.random() * 1) + 's';
+                star.style.setProperty('--star-size', star.style.width);
+                starsContainer.appendChild(star);
+            }
+        }
+
+        generateStars();
+
+        // Set the end date for the countdown (modify as needed)
+        const endDate = new Date("2024-03-31T23:59:59").getTime();
+        const memoSignoff = new Date('2024-03-10T23:59:59');
+        const loginSignoff = new Date('2024-03-18T23:59:59');
+        const homePageSignoff = new Date('2024-03-15T23:59:59');
+        // Update the countdown every second
+        setInterval(updateCountdown, 1000);
+
+        function updateCountdown() {
+            // Get the current date and time
+            const currentDate = new Date().getTime();
+
+            // Calculate the remaining time in milliseconds
+            const remainingTime = endDate - currentDate;
+
+            // Convert the remaining time to days, hours, minutes, and seconds
+            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+            // Update the HTML with the remaining time
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+
+            // Format the deadline
+            const deadlineDate = new Date(endDate);
+            const formattedDeadline = deadlineDate.toLocaleString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }).replace(/\//g, '-').replace(/\,/g, '');
+
+            // Update the HTML with the formatted deadline
+            document.getElementById("deadlineDate").textContent = formattedDeadline;
+        }
+
+        // Update the memo countdown every second
+        setInterval(updateMeMoCountdown, 1000);
+
+        function updateMeMoCountdown() {
+            // Get the current date and time
+            const currentDate = new Date().getTime();
+
+            // Calculate the remaining time in milliseconds
+            const remainingTime = memoSignoff - currentDate;
+
+            // Convert the remaining time to days, hours, minutes, and seconds
+            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+            // Update the HTML with the remaining time
+            document.getElementById("memoDays").textContent = days;
+            document.getElementById("memoHours").textContent = hours;
+            document.getElementById("memoMinutes").textContent = minutes;
+            document.getElementById("memoSeconds").textContent = seconds;
+
+            // Format the deadline
+            const deadlineDate = new Date(memoSignoff);
+            const formattedDeadline = deadlineDate.toLocaleString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }).replace(/\//g, '-').replace(/\,/g, '');
+
+            // Update the HTML with the formatted deadline
+            document.getElementById("memoSignOff").textContent = formattedDeadline;
+        }
+
+        // Update the memo countdown every second
+        setInterval(updateLoginCountdown, 1000);
+
+        function updateLoginCountdown() {
+            // Get the current date and time
+            const currentDate = new Date().getTime();
+
+            // Calculate the remaining time in milliseconds
+            const remainingTime = loginSignoff - currentDate;
+
+            // Convert the remaining time to days, hours, minutes, and seconds
+            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+            // Update the HTML with the remaining time
+            document.getElementById("loginDays").textContent = days;
+            document.getElementById("loginHours").textContent = hours;
+            document.getElementById("loginMinutes").textContent = minutes;
+            document.getElementById("loginSeconds").textContent = seconds;
+
+            // Format the deadline
+            const deadlineDate = new Date(loginSignoff);
+            const formattedDeadline = deadlineDate.toLocaleString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }).replace(/\//g, '-').replace(/\,/g, '');
+
+            // Update the HTML with the formatted deadline
+            document.getElementById("loginSignOff").textContent = formattedDeadline;
+        }
+
+        // Update the memo countdown every second
+        setInterval(updateHomePageCountdown, 1000);
+
+        function updateHomePageCountdown() {
+            // Get the current date and time
+            const currentDate = new Date().getTime();
+
+            // Calculate the remaining time in milliseconds
+            const remainingTime = homePageSignoff - currentDate;
+
+            // Convert the remaining time to days, hours, minutes, and seconds
+            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+            // Update the HTML with the remaining time
+            document.getElementById("homePageDays").textContent = days;
+            document.getElementById("homePageHours").textContent = hours;
+            document.getElementById("homePageMinutes").textContent = minutes;
+            document.getElementById("homePageSeconds").textContent = seconds;
+
+            // Format the deadline
+            const deadlineDate = new Date(homePageSignoff);
+            const formattedDeadline = deadlineDate.toLocaleString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }).replace(/\//g, '-').replace(/\,/g, '');
+
+            // Update the HTML with the formatted deadline
+            document.getElementById("homePageSignOff").textContent = formattedDeadline;
+        }
+    </script>
+</body>
+</html>
