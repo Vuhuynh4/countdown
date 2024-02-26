@@ -262,7 +262,72 @@
             </div>
         </div>
         <div class="countdown-row">
-            
+            <div class="countdown-cell">
+                <h1>Performance</h1>
+                <p><span id="performanceSignOff"></span></p>
+                <div class="countdown-timer-child">
+                    <span>
+                        <div class="count" id="performanceDays"></div>
+                        <div class="label">Days</div>
+                    </span>
+                    <span>
+                        <div class="count" id="performanceHours"></div>
+                        <div class="label">Hours</div>
+                    </span>
+                    <span>
+                        <div class="count" id="performanceMinutes"></div>
+                        <div class="label">Minutes</div>
+                    </span>
+                    <span>
+                        <div class="count" id="performanceSeconds"></div>
+                        <div class="label">Seconds</div>
+                    </span>
+                </div>
+            </div>
+            <div class="countdown-cell">
+                <h1>Quick Access</h1>
+                <p><span id="quickAccessSignOff"></span></p>
+                <div class="countdown-timer-child">
+                    <span>
+                        <div class="count" id="quickAccessDays"></div>
+                        <div class="label">Days</div>
+                    </span>
+                    <span>
+                        <div class="count" id="quickAccessHours"></div>
+                        <div class="label">Hours</div>
+                    </span>
+                    <span>
+                        <div class="count" id="quickAccessMinutes"></div>
+                        <div class="label">Minutes</div>
+                    </span>
+                    <span>
+                        <div class="count" id="quickAccessSeconds"></div>
+                        <div class="label">Seconds</div>
+                    </span>
+                </div>
+            </div>
+            <div class="countdown-cell">
+                <h1>Portfolio</h1>
+                <p><span id="portfolioSignOff"></span></p>
+                <div class="countdown-timer-child">
+                    <span>
+                        <div class="count" id="portfolioDays"></div>
+                        <div class="label">Days</div>
+                    </span>
+                    <span>
+                        <div class="count" id="portfolioHours"></div>
+                        <div class="label">Hours</div>
+                    </span>
+                    <span>
+                        <div class="count" id="portfolioMinutes"></div>
+                        <div class="label">Minutes</div>
+                    </span>
+                    <span>
+                        <div class="count" id="portfolioSeconds"></div>
+                        <div class="label">Seconds</div>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -291,9 +356,14 @@
 
         // Set the end date for the countdown (modify as needed)
         const endDate = new Date("2024-03-31T23:59:59").getTime();
-        const memoSignoff = new Date('2024-03-10T23:59:59');
-        const loginSignoff = new Date('2024-03-18T23:59:59');
-        const homePageSignoff = new Date('2024-03-15T23:59:59');
+        const memoSignoff = new Date('2024-03-05T23:59:59');
+        const loginSignoff = new Date('2024-03-15T23:59:59');
+        const homePageSignoff = new Date('2024-10-15T23:59:59');
+        const performanceSignoff = new Date('2024-03-10T23:59:59');
+        const quickAccessSignoff = new Date('2024-03-15T23:59:59');
+        const portfolioSignoff = new Date('2024-10-15T23:59:59');
+        const uiuxSignoff = new Date('2024-10-20T23:59:59');
+        
         // Update the countdown every second
         setInterval(updateCountdown, 1000);
 
@@ -368,7 +438,7 @@
             document.getElementById("memoSignOff").textContent = formattedDeadline;
         }
 
-        // Update the memo countdown every second
+        // Update the login countdown every second
         setInterval(updateLoginCountdown, 1000);
 
         function updateLoginCountdown() {
@@ -405,7 +475,7 @@
             document.getElementById("loginSignOff").textContent = formattedDeadline;
         }
 
-        // Update the memo countdown every second
+        // Update the homepage countdown every second
         setInterval(updateHomePageCountdown, 1000);
 
         function updateHomePageCountdown() {
@@ -440,6 +510,117 @@
 
             // Update the HTML with the formatted deadline
             document.getElementById("homePageSignOff").textContent = formattedDeadline;
+        }
+
+        // Update the performance countdown every second
+        setInterval(updatePerformanceCountdown, 1000);
+
+        function updatePerformanceCountdown() {
+            // Get the current date and time
+            const currentDate = new Date().getTime();
+
+            // Calculate the remaining time in milliseconds
+            const remainingTime = performanceSignoff - currentDate;
+
+            // Convert the remaining time to days, hours, minutes, and seconds
+            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+            // Update the HTML with the remaining time
+            document.getElementById("performanceDays").textContent = days;
+            document.getElementById("performanceHours").textContent = hours;
+            document.getElementById("performanceMinutes").textContent = minutes;
+            document.getElementById("performanceSeconds").textContent = seconds;
+
+            // Format the deadline
+            const deadlineDate = new Date(performanceSignoff);
+            const formattedDeadline = deadlineDate.toLocaleString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }).replace(/\//g, '-').replace(/\,/g, '');
+
+            // Update the HTML with the formatted deadline
+            document.getElementById("performanceSignOff").textContent = formattedDeadline;
+        }
+
+        // Update the memo countdown every second
+        setInterval(updateQuickAccessCountdown, 1000);
+
+        function updateQuickAccessCountdown() {
+            // Get the current date and time
+            const currentDate = new Date().getTime();
+
+            // Calculate the remaining time in milliseconds
+            const remainingTime = quickAccessSignoff - currentDate;
+
+            // Convert the remaining time to days, hours, minutes, and seconds
+            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+            // Update the HTML with the remaining time
+            document.getElementById("quickAccessDays").textContent = days;
+            document.getElementById("quickAccessHours").textContent = hours;
+            document.getElementById("quickAccessMinutes").textContent = minutes;
+            document.getElementById("quickAccessSeconds").textContent = seconds;
+
+            // Format the deadline
+            const deadlineDate = new Date(quickAccessSignoff);
+            const formattedDeadline = deadlineDate.toLocaleString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }).replace(/\//g, '-').replace(/\,/g, '');
+
+            // Update the HTML with the formatted deadline
+            document.getElementById("quickAccessSignOff").textContent = formattedDeadline;
+        }
+
+        // Update the portfolio countdown every second
+        setInterval(updatePortfolioCountdown, 1000);
+
+        function updatePortfolioCountdown() {
+            // Get the current date and time
+            const currentDate = new Date().getTime();
+
+            // Calculate the remaining time in milliseconds
+            const remainingTime = portfolioSignoff - currentDate;
+
+            // Convert the remaining time to days, hours, minutes, and seconds
+            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+            // Update the HTML with the remaining time
+            document.getElementById("portfolioDays").textContent = days;
+            document.getElementById("portfolioHours").textContent = hours;
+            document.getElementById("portfolioMinutes").textContent = minutes;
+            document.getElementById("portfolioSeconds").textContent = seconds;
+
+            // Format the deadline
+            const deadlineDate = new Date(portfolioSignoff);
+            const formattedDeadline = deadlineDate.toLocaleString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }).replace(/\//g, '-').replace(/\,/g, '');
+
+            // Update the HTML with the formatted deadline
+            document.getElementById("portfolioSignOff").textContent = formattedDeadline;
         }
     </script>
 </body>
