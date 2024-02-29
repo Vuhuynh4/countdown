@@ -329,9 +329,76 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    
+        <div class="countdown-row">
+            <div class="countdown-cell">
+                <h1>UI</h1>
+                <p><span id="UISignOff"></span></p>
+                <div class="countdown-timer-child">
+                    <span>
+                        <div class="count" id="UIDays"></div>
+                        <div class="label">Days</div>
+                    </span>
+                    <span>
+                        <div class="count" id="UIHours"></div>
+                        <div class="label">Hours</div>
+                    </span>
+                    <span>
+                        <div class="count" id="UIMinutes"></div>
+                        <div class="label">Minutes</div>
+                    </span>
+                    <span>
+                        <div class="count" id="UISeconds"></div>
+                        <div class="label">Seconds</div>
+                    </span>
+                </div>
+            </div>
+            <div class="countdown-cell">
+                <h1>UX</h1>
+                <p><span id="UXSignOff"></span></p>
+                <div class="countdown-timer-child">
+                    <span>
+                        <div class="count" id="UXDays"></div>
+                        <div class="label">Days</div>
+                    </span>
+                    <span>
+                        <div class="count" id="UXHours"></div>
+                        <div class="label">Hours</div>
+                    </span>
+                    <span>
+                        <div class="count" id="UXMinutes"></div>
+                        <div class="label">Minutes</div>
+                    </span>
+                    <span>
+                        <div class="count" id="UXSeconds"></div>
+                        <div class="label">Seconds</div>
+                    </span>
+                </div>
+            </div>
+            <div class="countdown-cell">
+                <h1>UAT</h1>
+                <p><span id="UATSignOff"></span></p>
+                <div class="countdown-timer-child">
+                    <span>
+                        <div class="count" id="UATDays"></div>
+                        <div class="label">Days</div>
+                    </span>
+                    <span>
+                        <div class="count" id="UATHours"></div>
+                        <div class="label">Hours</div>
+                    </span>
+                    <span>
+                        <div class="count" id="UATMinutes"></div>
+                        <div class="label">Minutes</div>
+                    </span>
+                    <span>
+                        <div class="count" id="UATSeconds"></div>
+                        <div class="label">Seconds</div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         // Generate random stars
         function generateStars() {
@@ -356,13 +423,15 @@
 
         // Set the end date for the countdown (modify as needed)
         const endDate = new Date("2024-03-31T23:59:59").getTime();
-        const memoSignoff = new Date('2024-03-07T23:59:59');
+        const memoSignoff = new Date('2024-03-08T23:59:59');
         const loginSignoff = new Date('2024-03-15T23:59:59');
         const homePageSignoff = new Date('2024-03-15T23:59:59');
-        const performanceSignoff = new Date('2024-03-10T23:59:59');
+        const performanceSignoff = new Date('2024-03-12T23:59:59');
         const quickAccessSignoff = new Date('2024-03-15T23:59:59');
         const portfolioSignoff = new Date('2024-03-15T23:59:59');
-        const uiuxSignoff = new Date('2024-10-20T23:59:59');
+        const UISignoff = new Date('2024-10-15T23:59:59');
+        const UXSignoff = new Date('2024-10-15T23:59:59');
+        const UATSignoff = new Date('2024-10-15T23:59:59');
         
         // Update the countdown every second
         setInterval(updateCountdown, 1000);
@@ -621,6 +690,117 @@
 
             // Update the HTML with the formatted deadline
             document.getElementById("portfolioSignOff").textContent = formattedDeadline;
+        }
+
+        // Update the UI countdown every second
+        setInterval(updateUICountdown, 1000);
+
+        function updateUICountdown() {
+            // Get the current date and time
+            const currentDate = new Date().getTime();
+
+            // Calculate the remaining time in milliseconds
+            const remainingTime = UISignoff - currentDate;
+
+            // Convert the remaining time to days, hours, minutes, and seconds
+            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+            // Update the HTML with the remaining time
+            document.getElementById("UIDays").textContent = days;
+            document.getElementById("UIHours").textContent = hours;
+            document.getElementById("UIMinutes").textContent = minutes;
+            document.getElementById("UISeconds").textContent = seconds;
+
+            // Format the deadline
+            const deadlineDate = new Date(portfolioSignoff);
+            const formattedDeadline = deadlineDate.toLocaleString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }).replace(/\//g, '-').replace(/\,/g, '');
+
+            // Update the HTML with the formatted deadline
+            document.getElementById("UISignOff").textContent = formattedDeadline;
+        }
+
+        // Update the UX countdown every second
+        setInterval(updateUXCountdown, 1000);
+
+        function updateUXCountdown() {
+            // Get the current date and time
+            const currentDate = new Date().getTime();
+
+            // Calculate the remaining time in milliseconds
+            const remainingTime = UXSignoff - currentDate;
+
+            // Convert the remaining time to days, hours, minutes, and seconds
+            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+            // Update the HTML with the remaining time
+            document.getElementById("UXDays").textContent = days;
+            document.getElementById("UXHours").textContent = hours;
+            document.getElementById("UXMinutes").textContent = minutes;
+            document.getElementById("UXSeconds").textContent = seconds;
+
+            // Format the deadline
+            const deadlineDate = new Date(UXSignoff);
+            const formattedDeadline = deadlineDate.toLocaleString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }).replace(/\//g, '-').replace(/\,/g, '');
+
+            // Update the HTML with the formatted deadline
+            document.getElementById("UXSignOff").textContent = formattedDeadline;
+        }
+
+        // Update the UAT countdown every second
+        setInterval(updateUATSignOffCountdown, 1000);
+
+        function updateUATSignOffCountdown() {
+            // Get the current date and time
+            const currentDate = new Date().getTime();
+
+            // Calculate the remaining time in milliseconds
+            const remainingTime = UATSignoff - currentDate;
+
+            // Convert the remaining time to days, hours, minutes, and seconds
+            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+            // Update the HTML with the remaining time
+            document.getElementById("UATDays").textContent = days;
+            document.getElementById("UATHours").textContent = hours;
+            document.getElementById("UATMinutes").textContent = minutes;
+            document.getElementById("UATSeconds").textContent = seconds;
+
+            // Format the deadline
+            const deadlineDate = new Date(UATSignoff);
+            const formattedDeadline = deadlineDate.toLocaleString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }).replace(/\//g, '-').replace(/\,/g, '');
+
+            // Update the HTML with the formatted deadline
+            document.getElementById("UATSignOff").textContent = formattedDeadline;
         }
     </script>
 </body>
